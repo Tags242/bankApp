@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build and Run",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-Iutil",                       // Include util folder for header files
+        "-Imodel",                      // Include model folder for header files
+        "-Icontrollers",                // Include controllers folder for header files
+
+        // Main application file
+        "main.cpp",                     
+
+        // flow files in util folder
+        "controllers/Login.cpp",    
+        "controllers/SignUp.cpp",
+
+        // data-related files in model folder
+        "model/Repository.cpp",    
+        "model/User.cpp",
+        
+        // helper files in util folder
+        "util/Authentication.cpp",    
+        "util/Validation.cpp",          
+        "-o",
+        "BankApp"           
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"],
+      "detail": "Build and run the application."
+    }
+  ]
+}

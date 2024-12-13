@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Application",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "$bankApp", 
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "$bankApp",              
+      "environment": [],
+      "externalConsole": true,                   
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "Build and Run"           
+    }
+  ]
+}
