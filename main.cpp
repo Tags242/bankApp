@@ -31,7 +31,8 @@ int main() {
         cout << "                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:               " << endl;
         cout << "           :##################################################################-           " << endl;
         cout << endl;
-        cout << endl;
+
+        cout <<"                              Welcome to the Bank of C++ "<< endl << endl;
 
 
         cout << "[1] Login" << endl;
