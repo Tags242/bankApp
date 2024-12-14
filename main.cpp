@@ -32,11 +32,11 @@ int main() {
         cout << "           :##################################################################-           " << endl;
         cout << endl;
 
-        cout <<"                              Welcome to the Bank of C++ "<< endl << endl;
-
-
+        cout <<"                              Welcome to the Bank of C++ "<< endl;
+        cout <<"-------------------------------------------------------------------------------------------"<< endl << endl;
         cout << "[1] Login" << endl;
         cout << "[2] Sign Up" << endl << endl;
+        cout <<"-------------------------------------------------------------------------------------------"<< endl;
 
         string input;
         getline(cin, input);  //düz cin kullandığımızda her harfi buffera atıyordu ve her bir harf için 1 invalid input veriyordu.
