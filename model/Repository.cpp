@@ -5,7 +5,7 @@
 using namespace std;
 
 
-const char* getLength(const std::string& str) 
+const char* stringToArray(const string& str) 
 {
     static char buffer[256];
     size_t length = str.length();
@@ -81,17 +81,17 @@ void Repository::addUser(User user)
         //name
         unsigned short nameLength = user.getName().length();
         file.write((char*)&nameLength, sizeof(unsigned short)); // boyutu yaz
-        file.write(getLength(user.getName()), nameLength);      // içeriği yaz
+        file.write(stringToArray(user.getName()), nameLength);      // içeriği yaz
 
         //surname
         unsigned short surnameLength = user.getSurname().length();
         file.write((char*)&surnameLength, sizeof(unsigned short)); // boyutu yaz
-        file.write(getLength(user.getSurname()), surnameLength);   // içeriği yaz
+        file.write(stringToArray(user.getSurname()), surnameLength);   // içeriği yaz
 
         //password
         unsigned short passwordLength = user.getPassword().length();
         file.write((char*)&passwordLength, sizeof(unsigned short)); // boyutu yaz
-        file.write(getLength(user.getPassword()), passwordLength);  // içeriği yaz
+        file.write(stringToArray(user.getPassword()), passwordLength);  // içeriği yaz
 
         int balance = user.getBalance();
         file.write((char*)&balance, sizeof(int));
