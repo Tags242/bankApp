@@ -1,32 +1,24 @@
 #ifndef REPOSITORY_H
 #define REPOSITORY_H
 
-#include <string>
 #include "User.h"
+#include <string>
 using namespace std;
 
-class Repository {
-private:
-    string filePath; // Path to the binary file storing user data
+class Repository 
+{
+    unsigned short user_id;
 
-    // Helper methods
-    User readUserFromFile(ifstream& inFile) const; // Read a single user from the file
-    void writeUserToFile(ofstream& outFile, const User& user) const; // Write a single user to the file
+    void readUserId();
+    void writeUserId();
 
-public:
-    Repository(const string& file);
+    public:
+    Repository();
 
-    // Check if a username is available
-    bool isUsernameAvailable(const string& username) const;
-
-    // Fetch user by username
-    User getUserByUsername(const string& username) const;
-
-    // Add a new user
-    void addUser(const User& newUser);
-
-    // Update an existing user
-    void updateUser(const User& updatedUser);
+    void resetUserId();
+    void IncrementUserId();
+    void addUser(User user);
+    unsigned short getUserId();
 };
 
 #endif

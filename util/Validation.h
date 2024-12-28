@@ -8,7 +8,7 @@ class Validation {
     User user;
 public:
 
-    bool validateUsername(string);
+    bool validateUser(string);
     bool validatePassword(string);
 };
 

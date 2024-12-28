@@ -1,27 +1,47 @@
 #include "User.h"
 #include <iostream>
 #include <fstream>
-#include <string>   
+#include <string>
 using namespace std;
 
-
-//geçici ChatGPT yaptı düzeltilecek
-
 // Constructor
-User::User() : username(""), password(""), role("user"), balance(0) {}
-
-// Destructor
-User::~User() {}
+User::User() {
+    name = "";
+    surname = "";
+    password = "";
+    balance = 0;
+}
 
 // Getters
-string User::getUsername() const { return username; }
-string User::getPassword() const { return password; }
-string User::getRole() const { return role; }
-int User::getBalance() const { return balance; }
+string User::getName() {
+    return name; 
+}
+
+string User::getSurname() {
+    return surname; 
+}
+
+string User::getPassword() {
+    return password;
+}
+
+int User::getBalance() {
+    return balance;
+}
 
 // Setters
-void User::setUsername(const string& uname) { username = uname; }
-void User::setPassword(const string& pass) { password = pass; }
-void User::setRole(const string& r) { role = r; }
-void User::setBalance(int bal) { balance = bal; }
+void User::setName(string& newName) {
+    name = newName;
+}
 
+void User::setSurname(string& newSurname) {
+    surname = newSurname; // Assign the std::string directly
+}
+
+void User::setPassword(string& newPassword) {
+    password = newPassword; // Assign the std::string directly
+}
+
+void User::setBalance(int bal) {
+    balance = bal; // Assign the integer directly
+}

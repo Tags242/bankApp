@@ -6,26 +6,25 @@ using namespace std;
 
 class User {
 private:
-    string username;
+    string name;
+    string surname;
     string password;
-    string role;
     int balance;
 
 public:
-    // Constructor and Destructor
+    // Constructor
     User();
-    ~User();
 
     // Getters
-    string getUsername() const;
-    string getPassword() const;
-    string getRole() const;
-    int getBalance() const;
+    string getName();
+    string getSurname();
+    string getPassword();
+    int getBalance();
 
     // Setters
-    void setUsername(const string& uname);
-    void setPassword(const string& pass);
-    void setRole(const string& r);
+    void setName( string& name);
+    void setSurname( string& surname);
+    void setPassword(string& password);
     void setBalance(int bal);
 };
 

@@ -59,7 +59,7 @@ int main() {
     return 0;
 }
 
-//g++ -Icontrollers -Imodel -Iutil main.cpp controllers/Login.cpp controllers/SignUp.cpp model/User.cpp util/Validation.cpp util/Authentication.cpp -o BankApp
+//g++ -Icontrollers -Imodel -Iutil main.cpp controllers/Login.cpp controllers/SignUp.cpp model/User.cpp model/Repository.cpp util/Validation.cpp util/Authentication.cpp -o BankApp
 //./BankApp  
 
 //ctrl + shift + B (json file executer json file'ı updatelemek gerekiyor)
