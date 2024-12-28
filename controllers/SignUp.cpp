@@ -17,6 +17,10 @@ void SignUpMenu()
     string password;
     string password1;
 
+    cout <<"                                       Sign Up"<< endl << endl;
+    cout <<"-------------------------------------------------------------------------------------------"<< endl << endl;
+
+
     while (true)
     {
         cout << "Name: ";
@@ -29,7 +33,7 @@ void SignUpMenu()
         }
         else
         {
-            cout << endl << "Name should only contain letters." << endl;
+            cout << "Name should only contain letters." << endl;
         }
     }
 
@@ -45,39 +49,38 @@ void SignUpMenu()
         }
         else
         {
-            cout << endl << "Surname should only contain letters." << endl;
+            cout << "Surname should only contain letters." << endl;
         }
     }
 
     while (true)
     {   
-        cout << "Your password needs to be 8 characters long, without spaces, and must contain a number, uppercase, and lowercase letters." << endl;
+        cout << "password must be 8 characters minimum, no spaces, with uppercase and lowercase letters." << endl;
         cout << "Password: ";
         getline(cin, password);
 
         if (validate.validatePassword(password))
         {
-            cout << endl << "Your password matches the requirements." << endl;
-            break;
-        }
-    }
-
-    while (true)
-    {
-        cout << "Write your password again: ";
-        getline(cin, password1);
-
-        if (password == password1)
-        {
-            cout << endl << "Password set successfully." << endl;
             user.setPassword(password);
             break;
         }
-        else
-        {
-            cout << endl << "Passwords don't match." << endl;      
-        }
     }
+
+    // while (true)
+    // {
+    //     cout << "Write your password again: ";
+    //     getline(cin, password1);
+
+    //     if (password == password1)
+    //     {
+    //         cout << "Password set successfully." << endl;
+    //         break;
+    //     }
+    //     else
+    //     {
+    //         cout << "Passwords don't match." << endl;      
+    //     }
+    // }
 
     user.setBalance(1000);
 
@@ -87,6 +90,10 @@ void SignUpMenu()
     repo.addUser(user);
     // unsigned short user_id1 = repo.getUserId();
     // cout << user_id1 << endl;
+
+
+    cout << "user_id: " << repo.getUserId() << endl;
+    cout << "note your id! You can only login with using your user_id." << endl;
 
     //Accout Menu(user)
 }

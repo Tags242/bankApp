@@ -66,7 +66,7 @@ void Repository::readUserId()// file'daki user_id'yi okur
     }
 }
 
-void Repository::IncrementUserId() // file'daki okur ve 1 arttırır
+void Repository::IncrementUserId() // user_id'yi 1 arttırır ve file'a yazar
 {
     user_id++;
     writeUserId();
@@ -80,17 +80,17 @@ void Repository::addUser(User user)
     {
         //name
         unsigned short nameLength = user.getName().length();
-        file.write((char*)&nameLength, sizeof(unsigned short)); // boyutu yaz
+        file.write((char*)&nameLength, sizeof(unsigned short));      // boyutu yaz
         file.write(stringToArray(user.getName()), nameLength);      // içeriği yaz
 
         //surname
         unsigned short surnameLength = user.getSurname().length();
-        file.write((char*)&surnameLength, sizeof(unsigned short)); // boyutu yaz
+        file.write((char*)&surnameLength, sizeof(unsigned short));      // boyutu yaz
         file.write(stringToArray(user.getSurname()), surnameLength);   // içeriği yaz
 
         //password
         unsigned short passwordLength = user.getPassword().length();
-        file.write((char*)&passwordLength, sizeof(unsigned short)); // boyutu yaz
+        file.write((char*)&passwordLength, sizeof(unsigned short));      // boyutu yaz
         file.write(stringToArray(user.getPassword()), passwordLength);  // içeriği yaz
 
         int balance = user.getBalance();

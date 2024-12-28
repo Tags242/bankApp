@@ -32,7 +32,6 @@ bool Validation::validatePassword(string password)
 
     bool hasUpper = false;
     bool hasLower = false;
-    bool hasNum = false;
     bool hasSpace = false;
 
     for (size_t i = 0; i < password.length(); i++)
@@ -45,16 +44,12 @@ bool Validation::validatePassword(string password)
         {
             hasLower = true;
         }
-        else if (password[i] >= '0' && password[i] <= '9')
-        {
-            hasNum = true;
-        }
         else if (password[i] == ' ')
         {
             hasSpace = true;
         }
 
-        if (hasUpper && hasLower && hasNum && !hasSpace)// at least 8 characters uppercase, lowercase, number and doesn't contain space
+        if (hasUpper && hasLower && !hasSpace)// at least 8 characters uppercase, lowercase, and doesn't contain space
         {
             return true;
         }
