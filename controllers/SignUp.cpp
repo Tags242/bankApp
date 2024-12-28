@@ -81,7 +81,7 @@ void SignUpMenu()
 
     user.setBalance(1000);
 
-    //repo.resetUserId();
+    repo.resetUserId();
     // unsigned short user_id = repo.getUserId();
     // cout << user_id << endl;
     repo.addUser(user);

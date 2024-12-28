@@ -22,8 +22,8 @@ public:
     int getBalance();
 
     // Setters
-    void setName( string& name);
-    void setSurname( string& surname);
+    void setName(string& name);
+    void setSurname(string& surname);
     void setPassword(string& password);
     void setBalance(int bal);
 };
