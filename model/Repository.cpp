@@ -19,7 +19,7 @@ const char* stringToArray(const string& str)
 
 unsigned short Repository::getUserId()
 {
-    return user_id;
+    return user_id - 1;
 }
 
 Repository::Repository() 
@@ -55,15 +55,7 @@ void Repository::readUserId()// file'daki user_id'yi okur
     {
         file.read((char*)&user_id, sizeof(unsigned short));
         file.close();
-        if (file.gcount() != sizeof(unsigned short)) 
-        {
-            user_id = 0;
-        }
     } 
-    else 
-    {
-        user_id = 0;
-    }
 }
 
 void Repository::IncrementUserId() // user_id'yi 1 arttırır ve file'a yazar
