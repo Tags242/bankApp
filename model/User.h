@@ -27,7 +27,7 @@ public:
     void setName(string& name);
     void setSurname(string& surname);
     void setPassword(string& password);
-    void setUserId(string& userId);
+    void setUserId(const string& userId);
     void setBalance(int bal);
 };
 

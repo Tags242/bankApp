@@ -18,8 +18,9 @@ void SignUpMenu()
     string password;
     string password1;
 
-    cout <<"                                       Sign Up"<< endl << endl;
-    cout <<"-------------------------------------------------------------------------------------------"<< endl << endl;
+    cout <<"+-----------------------------------------------------------------------------------------+"<< endl << endl;
+    cout <<"|                                      Sign Up                                            |"<< endl << endl;
+    cout <<"+-----------------------------------------------------------------------------------------+"<< endl << endl;
 
 
     while (true)
@@ -67,32 +68,14 @@ void SignUpMenu()
         }
     }
 
-    // while (true)
-    // {
-    //     cout << "Write your password again: ";
-    //     getline(cin, password1);
-
-    //     if (password == password1)
-    //     {
-    //         cout << "Password set successfully." << endl;
-    //         break;
-    //     }
-    //     else
-    //     {
-    //         cout << "Passwords don't match." << endl;      
-    //     }
-    // }
 
     user.setBalance(19999);
 
-    //repo.resetUserId();
-    // unsigned short user_id = repo.getUserId();
-    // cout << user_id << endl;
     repo.addUser(user);
-    // unsigned short user_id1 = repo.getUserId();
-    // cout << user_id1 << endl;
 
-
+    unsigned short user_id = repo.getUserId();
+    user.setUserId(to_string(user_id));
+    
     cout <<endl<< "user_id: " << repo.getUserId() << " (note your id! You can only login with using your user_id.)" << endl;;
     cout << "press enter to continue..." << endl;
 

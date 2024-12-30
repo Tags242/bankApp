@@ -56,7 +56,7 @@ void User::setPassword(string& newPassword)
     password = newPassword;
 }
 
-void User::setUserId(string& newUserId)
+void User::setUserId(const string& newUserId)
 {
     user_id = newUserId;
 }
