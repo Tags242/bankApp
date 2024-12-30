@@ -5,43 +5,63 @@
 using namespace std;
 
 // Constructor
-User::User() {
+User::User() 
+{
     name = "";
     surname = "";
     password = "";
+    user_id = "";
     balance = 0;
 }
 
 // Getters
-string User::getName() {
+string User::getName() 
+{
     return name; 
 }
 
-string User::getSurname() {
+string User::getSurname() 
+{
     return surname; 
 }
 
-string User::getPassword() {
+string User::getPassword() 
+{
     return password;
 }
 
-int User::getBalance() {
+string User::getUserId() {
+
+    return user_id;
+}
+
+int User::getBalance() 
+{
     return balance;
 }
 
 // Setters
-void User::setName(string& newName) {
+void User::setName(string& newName) 
+{
     name = newName;
 }
 
-void User::setSurname(string& newSurname) {
-    surname = newSurname; // Assign the std::string directly
+void User::setSurname(string& newSurname) 
+{
+    surname = newSurname;
 }
 
-void User::setPassword(string& newPassword) {
-    password = newPassword; // Assign the std::string directly
+void User::setPassword(string& newPassword) 
+{
+    password = newPassword;
 }
 
-void User::setBalance(int bal) {
-    balance = bal; // Assign the integer directly
+void User::setUserId(string& newUserId)
+{
+    user_id = newUserId;
+}
+
+void User::setBalance(int bal) 
+{
+    balance = bal; 
 }

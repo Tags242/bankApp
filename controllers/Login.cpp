@@ -1,48 +1,54 @@
 #include "Login.h"
 #include "Authentication.h"
 #include "User.h"
-#include "Validation.h"
+#include "Repository.h"
+#include "AccountMenu.h"
 #include <iostream>
 using namespace std;
 
 void loginMenu()
 {
-    cout << "you are in login page"<<endl;
-    // User user;
-    // Validation validate;
-    // string username;
-    // string password;
+    User user;
+    Authentication auth;
+    Repository repo;
+    string user_id;
+    string password;
+    
+    cout <<"+-----------------------------------------------------------------------------------------+"<< endl << endl;
+    cout <<"|                                         Login                                           |"<< endl << endl;
+    cout <<"+-----------------------------------------------------------------------------------------+"<< endl << endl;
 
+    while(true)
+    {
+        cout << "user id: ";
+        getline(cin,user_id);
 
-    // while(true)
-    // {
-    //     cout << "username: ";
-    //     getline(cin,username);
+        if (auth.authenticateUserId(user_id))
+        {
+            break;
+        }
+        else
+        {
+            cout << "user_id doesn't exist" << endl;
+        }
+    }
 
-    //     if (validate.validateUsername(user.getUsername()))
-    //     {
+    user = repo.readUserData(user_id);
+    user.setUserId(user_id);
+    
+    while(true)
+    {
+        cout << "password: ";
+        getline(cin,password);
 
-    //         cout << endl << "Username validated!" << endl;
-    //         break;
-    //     }
-    //     else 
-    //         cout <<  endl << "Username doesn't exist." << endl;
-    // }
+        if (auth.authenticatePassword(password, user))
+        {
+            break;
+        }
+        else
+            cout << "Wrong password." << endl;
+    }
+    cout << endl;
 
-
-    // while(true)
-    // {
-    //     cout << "password: ";
-    //     getline(cin,password);
-
-
-    //     if (true/*authenticate.user.password(password)*/)
-    //     {
-    //         cout << "Login successful." << endl;      
-    //         break;
-    //     }
-    //     else
-    //         cout << "Wrong password." << endl;
-    // }
-
+    AccountMenu(user);
 }

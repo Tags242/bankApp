@@ -1,16 +1,31 @@
 #include "Authentication.h"
-#include "User.h" // Full definition of User
+#include "User.h" 
 #include <iostream>
 #include <string> 
 #include <fstream> 
 using namespace std;
 
-bool Authentication::authenticateUsername(string username)
+bool Authentication::authenticateUserId(string user_id)
 {
-    return true;
+    ifstream file(user_id, ios::binary);
+    if (file.is_open())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    
 }
 
-bool Authentication::authenticatePassword(string password)
+bool Authentication::authenticatePassword(string password, User user)
 {
-    return true;
+    string realPassword = user.getPassword();
+    if (password == realPassword)
+    {
+        return true;
+    }
+    else
+        return false;
 }

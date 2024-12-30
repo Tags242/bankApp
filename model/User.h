@@ -9,6 +9,7 @@ private:
     string name;
     string surname;
     string password;
+    string user_id;
     int balance;
 
 public:
@@ -19,12 +20,14 @@ public:
     string getName();
     string getSurname();
     string getPassword();
+    string getUserId();
     int getBalance();
 
     // Setters
     void setName(string& name);
     void setSurname(string& surname);
     void setPassword(string& password);
+    void setUserId(string& userId);
     void setBalance(int bal);
 };
 

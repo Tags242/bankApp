@@ -3,6 +3,7 @@
 #include "User.h"
 #include "Validation.h"
 #include "Repository.h"
+#include "AccountMenu.h"
 #include <iostream>
 using namespace std;
 
@@ -82,7 +83,7 @@ void SignUpMenu()
     //     }
     // }
 
-    user.setBalance(1000);
+    user.setBalance(19999);
 
     //repo.resetUserId();
     // unsigned short user_id = repo.getUserId();
@@ -92,8 +93,11 @@ void SignUpMenu()
     // cout << user_id1 << endl;
 
 
-    cout << "user_id: " << repo.getUserId() << endl;
-    cout << "note your id! You can only login with using your user_id." << endl;
+    cout <<endl<< "user_id: " << repo.getUserId() << " (note your id! You can only login with using your user_id.)" << endl;;
+    cout << "press enter to continue..." << endl;
 
-    //Accout Menu(user)
+    string dummy; 
+    getline(cin, dummy);    
+    
+    AccountMenu(user);
 }

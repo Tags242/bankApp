@@ -22,14 +22,15 @@ unsigned short Repository::getUserId()
     return user_id - 1;
 }
 
+
 Repository::Repository() 
 {
-    user_id = 0;
+    user_id = 1;
 }
 
 void Repository::resetUserId()
 {
-    unsigned short num = 0;
+    unsigned short num = 1;
     ofstream file("user_id.bin", ios::binary | ios::trunc);
     if (file.is_open()) 
     {
@@ -94,3 +95,64 @@ void Repository::addUser(User user)
     IncrementUserId();
 }
 
+User Repository::readUserData(string user_id) 
+{
+    User user;
+    ifstream file(user_id, ios::binary | ios::ate);
+
+    string name;
+    string surname;
+    string password;
+    int balance;
+
+    if (file.is_open()) 
+    {
+        streampos fileSize = file.tellg();
+        file.seekg(0, ios::beg);
+        char* mBlock = new char[fileSize];
+        file.read(mBlock, fileSize);
+        file.close();
+
+        char* p = mBlock;
+
+        unsigned short nameLength = *((unsigned short*)(p));
+        p += sizeof(unsigned short);
+
+        for (unsigned short i = 0; i < nameLength; i++)
+        {
+            name += *((char*)(p));
+            p += sizeof(char);
+        }
+
+        unsigned short surnameLength = *((unsigned short*)(p));
+        p += sizeof(unsigned short);
+
+        for (unsigned short i = 0; i < surnameLength; i++)
+        {
+            surname += *((char*)(p));
+            p += sizeof(char);
+        }
+
+        unsigned short passwordLength = *((unsigned short*)(p));
+        p += sizeof(unsigned short);
+
+        for (unsigned short i = 0; i < passwordLength; i++)
+        {
+            password += *((char*)(p));
+            p += sizeof(char);
+        }
+
+        balance = *((int*)(p));
+
+
+        user.setName(name);
+        user.setSurname(surname);
+        user.setPassword(password);
+        user.setBalance(balance);
+
+        delete[] mBlock;
+    } 
+     
+
+    return user;
+}

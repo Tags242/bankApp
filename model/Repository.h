@@ -8,9 +8,11 @@ using namespace std;
 class Repository 
 {
     unsigned short user_id;
+    User user;
 
     void readUserId();
     void writeUserId();
+
 
     public:
     Repository();
@@ -19,6 +21,8 @@ class Repository
     void IncrementUserId();
     void addUser(User user);
     unsigned short getUserId();
+
+    User readUserData(string user_id);
 };
 
 #endif

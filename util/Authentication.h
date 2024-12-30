@@ -5,12 +5,13 @@
 #include <string> 
 using namespace std;
 
-class Authentication {
-    User user;
+class Authentication 
+{
+
 public:
-    // Authenticate a user using a username and password
-    bool authenticateUsername(string);
-    bool authenticatePassword(string);
+
+    bool authenticateUserId(string);
+    bool authenticatePassword(string password, User user);
 };
 
 #endif
