@@ -10,7 +10,7 @@ private:
     string surname;
     string password;
     string user_id;
-    int balance;
+    double balance;
 
 public:
     // Constructor
@@ -21,14 +21,14 @@ public:
     string getSurname();
     string getPassword();
     string getUserId();
-    int getBalance();
+    double getBalance();
 
     // Setters
     void setName(string& name);
     void setSurname(string& surname);
     void setPassword(string& password);
     void setUserId(const string& userId);
-    void setBalance(int bal);
+    void setBalance(double bal);
 };
 
 #endif

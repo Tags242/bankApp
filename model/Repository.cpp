@@ -86,8 +86,8 @@ void Repository::addUser(User user)
         file.write((char*)&passwordLength, sizeof(unsigned short));      // boyutu yaz
         file.write(stringToArray(user.getPassword()), passwordLength);  // içeriği yaz
 
-        int balance = user.getBalance();
-        file.write((char*)&balance, sizeof(int));
+        double balance = user.getBalance();
+        file.write((char*)&balance, sizeof(double));
 
         file.close(); 
     }
@@ -103,7 +103,7 @@ User Repository::readUserData(string user_id)
     string name;
     string surname;
     string password;
-    int balance;
+    double balance;
 
     if (file.is_open()) 
     {
@@ -142,7 +142,7 @@ User Repository::readUserData(string user_id)
             p += sizeof(char);
         }
 
-        balance = *((int*)(p));
+        balance = *((double*)(p));
 
 
         user.setName(name);

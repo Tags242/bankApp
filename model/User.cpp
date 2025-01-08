@@ -35,7 +35,7 @@ string User::getUserId() {
     return user_id;
 }
 
-int User::getBalance() 
+double User::getBalance() 
 {
     return balance;
 }
@@ -61,7 +61,7 @@ void User::setUserId(const string& newUserId)
     user_id = newUserId;
 }
 
-void User::setBalance(int bal) 
+void User::setBalance(double bal) 
 {
     balance = bal; 
 }
