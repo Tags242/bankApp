@@ -1,5 +1,6 @@
 #include "Repository.h"
 #include "User.h"
+#include <iostream>
 #include <fstream>
 #include <string>
 using namespace std;
@@ -111,7 +112,6 @@ User Repository::readUserData(string user_id)
         file.seekg(0, ios::beg);
         char* mBlock = new char[fileSize];
         file.read(mBlock, fileSize);
-        file.close();
 
         char* p = mBlock;
 
@@ -144,15 +144,82 @@ User Repository::readUserData(string user_id)
 
         balance = *((double*)(p));
 
-
         user.setName(name);
         user.setSurname(surname);
         user.setPassword(password);
         user.setBalance(balance);
 
+        file.close();
         delete[] mBlock;
+    }
+    else
+    {
+        cerr << "file can not open";
     } 
      
 
     return user;
+}
+
+void Repository::sendMoney(string sender_id, string recipient_id, double money) {
+
+    User sender = readUserData(sender_id);
+    User recipient = readUserData(recipient_id);
+
+    sender.setBalance(sender.getBalance() - money);
+    recipient.setBalance(recipient.getBalance() + money);
+
+    ofstream senderFile(sender_id, ios::binary | ios::trunc);
+    if (senderFile.is_open()) 
+    {
+        unsigned short nameLength = sender.getName().length();
+        senderFile.write((char*)&nameLength, sizeof(unsigned short));
+        senderFile.write(stringToArray(sender.getName()), nameLength);
+
+        unsigned short surnameLength = sender.getSurname().length();
+        senderFile.write((char*)&surnameLength, sizeof(unsigned short));
+        senderFile.write(stringToArray(sender.getSurname()), surnameLength);
+
+        unsigned short passwordLength = sender.getPassword().length();
+        senderFile.write((char*)&passwordLength, sizeof(unsigned short));
+        senderFile.write(stringToArray(sender.getPassword()), passwordLength);
+
+        double balance = sender.getBalance();
+        senderFile.write((char*)&balance, sizeof(double));
+
+        senderFile.close();
+    } 
+    else
+    {
+        cout << "Error: Unable to open sender file for updating." << endl;
+        return;
+    }
+
+    ofstream recipientFile(recipient_id, ios::binary | ios::trunc);
+    if (recipientFile.is_open()) 
+    {
+        unsigned short nameLength = recipient.getName().length();
+        recipientFile.write((char*)&nameLength, sizeof(unsigned short));
+        recipientFile.write(stringToArray(recipient.getName()), nameLength);
+
+        unsigned short surnameLength = recipient.getSurname().length();
+        recipientFile.write((char*)&surnameLength, sizeof(unsigned short));
+        recipientFile.write(stringToArray(recipient.getSurname()), surnameLength);
+
+        unsigned short passwordLength = recipient.getPassword().length();
+        recipientFile.write((char*)&passwordLength, sizeof(unsigned short));
+        recipientFile.write(stringToArray(recipient.getPassword()), passwordLength);
+
+        double balance = recipient.getBalance();
+        recipientFile.write((char*)&balance, sizeof(double));
+
+        recipientFile.close();
+    } 
+    else 
+    {
+        cout << "Error: Unable to open recipient file for updating." << endl;
+        return;
+    }
+
+    cout << "Transaction completed successfully. Transferred " << money << "tl from " << sender_id << " to " << recipient_id << endl;
 }

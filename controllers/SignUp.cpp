@@ -69,7 +69,9 @@ void SignUpMenu()
     }
 
 
-    user.setBalance(19999);
+    user.setBalance(100);
+
+    //repo.resetUserId();
 
     repo.addUser(user);
 

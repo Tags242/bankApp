@@ -13,7 +13,6 @@ class Repository
     void readUserId();
     void writeUserId();
 
-
     public:
     Repository();
 
@@ -21,6 +20,7 @@ class Repository
     void IncrementUserId();
     void addUser(User user);
     unsigned short getUserId();
+    void sendMoney(string,string,double);
 
     User readUserData(string user_id);
 };

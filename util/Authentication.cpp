@@ -7,16 +7,7 @@ using namespace std;
 
 bool Authentication::authenticateUserId(string user_id)
 {
-    ifstream file(user_id, ios::binary);
-    if (file.is_open())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-    
+    return true;
 }
 
 bool Authentication::authenticatePassword(string password, User user)

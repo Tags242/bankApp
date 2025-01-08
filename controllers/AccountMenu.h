@@ -4,6 +4,6 @@
 
 void AccountMenu(User);
 void printName(string name,string surname);
-void printBalance(int balance);
+void printBalance(double balance);
 
 #endif

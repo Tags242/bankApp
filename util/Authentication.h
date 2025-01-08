@@ -7,10 +7,8 @@ using namespace std;
 
 class Authentication 
 {
-
 public:
-
-    bool authenticateUserId(string);
+    bool authenticateUserId(string user_id);
     bool authenticatePassword(string password, User user);
 };
 

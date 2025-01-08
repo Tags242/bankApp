@@ -23,7 +23,7 @@ void loginMenu()
         cout << "user id: ";
         getline(cin,user_id);
 
-        if (auth.authenticateUserId(user_id))
+        if (auth.authenticateUserId(user_id))//sıkıntılı bütün user_id'lere bakması gerekiyor
         {
             break;
         }

@@ -58,5 +58,5 @@ int main() {
     return 0;
 }
 
-//g++ -Icontrollers -Imodel -Iutil main.cpp controllers/Login.cpp controllers/SignUp.cpp controllers/AccountMenu.cpp model/User.cpp model/Repository.cpp util/Validation.cpp util/Authentication.cpp -o BankApp
+//g++ -Icontrollers -Imodel -Iutil main.cpp controllers/Login.cpp controllers/SignUp.cpp controllers/AccountMenu.cpp controllers/sendMoneyMenu.cpp model/User.cpp model/Repository.cpp util/Validation.cpp util/Authentication.cpp -o BankApp
 //./BankApp  
