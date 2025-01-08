@@ -7,22 +7,23 @@
 
 using namespace std;
 
-void sendMoneyMenu(User sender)
+void sendMoneyMenu(User &sender)
 {
     cout <<"+-----------------------------------------------------------------------------------------+"<< endl << endl;
     cout <<"|                                         Send Money                                      |"<< endl << endl;
     cout <<"+-----------------------------------------------------------------------------------------+"<< endl << endl;
 
     Repository repo;
-    string user_id;
+    string recipient_id;
     double money;
-
+    
     while(true)
     {
-        cout << "Write the user id of the recipient: ";
-        getline(cin,user_id);
+        cout << "Write the IBAN of the recipient: ";
+        getline(cin,recipient_id);
         break;
     }
+    //recipient_id doesnt exist
 
     while(true)
     {
@@ -36,9 +37,12 @@ void sendMoneyMenu(User sender)
         }
         else
         {
-            repo.sendMoney(sender.getUserId(),user_id,money);
-
+            repo.sendMoney(sender,recipient_id,money);
+            repo.logTransaction(sender.getUserId(), recipient_id, money);
+            cout << "Transferred " << money << "tl from " << sender.getUserId() << " to " << recipient_id << endl;
         }
         cin.clear();
+        cin.ignore();
+        break;
     }
 }

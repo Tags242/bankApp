@@ -20,7 +20,10 @@ class Repository
     void IncrementUserId();
     void addUser(User user);
     unsigned short getUserId();
-    void sendMoney(string,string,double);
+    void sendMoney(User&,string,double);
+    void logTransaction(const string& user_id, string& recipient_id, double money);
+    void displayTransactions(string& user_id);
+
 
     User readUserData(string user_id);
 };

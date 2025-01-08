@@ -161,9 +161,10 @@ User Repository::readUserData(string user_id)
     return user;
 }
 
-void Repository::sendMoney(string sender_id, string recipient_id, double money) {
+void Repository::sendMoney(User& sender, string recipient_id, double money) 
+{
 
-    User sender = readUserData(sender_id);
+    string sender_id = sender.getUserId();
     User recipient = readUserData(recipient_id);
 
     sender.setBalance(sender.getBalance() - money);
@@ -191,8 +192,7 @@ void Repository::sendMoney(string sender_id, string recipient_id, double money) 
     } 
     else
     {
-        cout << "Error: Unable to open sender file for updating." << endl;
-        return;
+        cerr << "Error: Unable to open sender file for updating." << endl;
     }
 
     ofstream recipientFile(recipient_id, ios::binary | ios::trunc);
@@ -217,9 +217,113 @@ void Repository::sendMoney(string sender_id, string recipient_id, double money) 
     } 
     else 
     {
-        cout << "Error: Unable to open recipient file for updating." << endl;
+        cerr << "Error: Unable to open recipient file for updating." << endl;
+    }
+}
+
+void Repository::logTransaction(const string& sender_id, string& recipient_id, double money) 
+{
+    // Log for the sender
+    ofstream senderFile(sender_id + "_transactions.bin", ios::binary | ios::app);
+    if (senderFile.is_open()) 
+    {
+        // Write action type for sender
+        string action = "Sent to";
+        unsigned short actionLength = action.length();
+        senderFile.write((char*)&actionLength, sizeof(unsigned short));
+        senderFile.write(stringToArray(action), actionLength);
+
+        // Write recipient ID
+        unsigned short recipientLength = recipient_id.length();
+        senderFile.write((char*)&recipientLength, sizeof(unsigned short));
+        senderFile.write(stringToArray(recipient_id), recipientLength);
+
+        // Write amount
+        senderFile.write((char*)&money, sizeof(double));
+
+        senderFile.close();
+    }
+    else
+    {
+        cerr << "Error: Unable to open sender transaction file." << endl;
+    }
+
+    // Log for the recipient
+    ofstream recipientFile(recipient_id + "_transactions.bin", ios::binary | ios::app);
+    if (recipientFile.is_open()) 
+    {
+        // Write action type for recipient
+        string action = "Received from";
+        unsigned short actionLength = action.length();
+        recipientFile.write((char*)&actionLength, sizeof(unsigned short));
+        recipientFile.write(stringToArray(action), actionLength);
+
+        // Write sender ID
+        unsigned short senderLength = sender_id.length();
+        recipientFile.write((char*)&senderLength, sizeof(unsigned short));
+        recipientFile.write(stringToArray(sender_id), senderLength);
+
+        // Write amount
+        recipientFile.write((char*)&money, sizeof(double));
+
+        recipientFile.close();
+    }
+    else
+    {
+        cerr << "Error: Unable to open recipient transaction file." << endl;
+    }
+}
+
+void Repository::displayTransactions(string& user_id) 
+{
+    ifstream file(user_id + "_transactions.bin", ios::binary | ios::ate);
+    if (!file.is_open()) 
+    {
+        cout << "You don't have any transactions." << endl << endl;
         return;
     }
 
-    cout << "Transaction completed successfully. Transferred " << money << "tl from " << sender_id << " to " << recipient_id << endl;
+    streampos fileSize = file.tellg();
+    file.seekg(0, ios::beg);
+
+    char* mBlock = new char[fileSize];
+    file.read(mBlock, fileSize);
+
+    char* p = mBlock;
+
+    while (p < mBlock + fileSize) 
+    {
+        // Read action type
+        unsigned short actionLength = *((unsigned short*)(p));
+        p += sizeof(unsigned short);
+
+        string action;
+        for (unsigned short i = 0; i < actionLength; i++) 
+        {
+            action += *((char*)(p));
+            p += sizeof(char);
+        }
+
+        // Read other user ID
+        unsigned short otherIdLength = *((unsigned short*)(p));
+        p += sizeof(unsigned short);
+
+        string otherId;
+        for (unsigned short i = 0; i < otherIdLength; i++) 
+        {
+            otherId += *((char*)(p));
+            p += sizeof(char);
+        }
+
+        // Read money
+        double money = *((double*)(p));
+        p += sizeof(double);
+
+ 
+        cout << action << " " << otherId << ": " << money << " TL." << endl;
+        cout << "-------------------------------------------------------------------------------------------" << endl;
+    }
+
+    delete[] mBlock;
+    file.close();
 }

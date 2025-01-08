@@ -2,6 +2,6 @@
 #define SENDMONEYMENU_H
 #include "User.h"
 
-void sendMoneyMenu(User);
+void sendMoneyMenu(User &);
 
 #endif

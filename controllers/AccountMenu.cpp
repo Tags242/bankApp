@@ -1,12 +1,13 @@
 #include "AccountMenu.h"
 #include "Authentication.h"
 #include "sendMoneyMenu.h"
-#include "User.h"
+#include "dollarAccountMenu.h"
 #include "Repository.h"
+#include "User.h"
 #include <iostream>
 using namespace std;
 
-void AccountMenu(User user)
+void AccountMenu(User &user)
 {
     while (true)
     {
@@ -14,6 +15,8 @@ void AccountMenu(User user)
         string surname = user.getSurname();
         string user_id = user.getUserId();
         double balance = user.getBalance();
+
+        Repository repo;
 
         cout <<"+-----------------------------------------------------------------------------------------+"<< endl << endl;
         cout <<"|                                      Account Menu                                       |" << endl << endl;
@@ -32,9 +35,13 @@ void AccountMenu(User user)
 
         cout << "IBAN: " << user_id << endl << endl;
 
+        cout << "| Last Transactions " << endl;
+        cout <<"-------------------------------------------------------------------------------------------"<< endl;
+        repo.displayTransactions(user_id);
+        cout << endl;
+
         cout << "[1] Send Money" << endl;
-        cout << "[2] Open Euro Account " << endl;
-        cout << "[3] Open Dollar Account " << endl << endl;
+        cout << "[2] Open Dollar Account " << endl << endl;
 
         string input;
         getline(cin, input);
@@ -46,17 +53,13 @@ void AccountMenu(User user)
                 sendMoneyMenu(user); 
                 break;
             case '2':
-    //            euroAccountMenu();
-                break;
-            case '3':
-    //            dollarAccountMenu(); 
+                dollarAccountMenu();
                 break;
             default:
                 cout << "Invalid input. Please try again." << endl;
                 break;
         }
-    }
-    
+    } 
 }
 
 void printName(string name, string surname)
